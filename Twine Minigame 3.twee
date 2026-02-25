@@ -1,0 +1,110 @@
+:: StoryTitle
+Twine Minigame 3
+
+
+:: StoryData
+{
+  "ifid": "86BF7D56-57F7-48FC-A5AC-30CAD96C74D5",
+  "format": "SugarCube",
+  "format-version": "2.37.3",
+  "start": "The Gate",
+  "zoom": 1
+}
+
+
+:: Enter your coin {"position":"850,750","size":"100,100"}
+As you enter your coin you hear a click and hear a a gate open
+You ''[[climb out of the well->left]]''
+
+<<set $coins to $coins - 1>>
+<<set $hasKey to true>>
+
+
+:: Plunge {"position":"675,750","size":"100,100"}
+As you descend into the well other than getting absolutely soaked you feel around and your hands find a mechanism that seems like a slot.
+
+<<if $coins == 0>>
+but you have nothing to put into the slot
+<<else>>
+You decide to ''[[Enter your coin]]'' into the slot
+<</if>>
+
+''[[climb out of the well?->left]]''
+
+<<set $Drenched to true>>
+
+
+:: Set out {"position":"875,500","size":"100,100"}
+<<if $HasBeen && !$hasKey>>
+You go back to the closed gate, it hasnt budged one bit
+
+do you head back ''[[left]]'' or ''[[right]]''
+<</if>>
+<<if !$HasBeen && !$hasKey >>
+You enter the catacombs and a mechanism behind you slams shut cementing you within the dungeons depths.
+
+The path ahead splits, do you go ''[[left]]'' or ''[[right]]''
+<</if>>
+<<if $HasBeen && $hasKey>>
+The gate is wide open alongside stairs that have descended from the ceiling.
+
+do you head back ''[[left]]'' or ''[[right]]''
+Or do you ''[[leave the dungeon]]''
+<</if>>
+
+
+<<set $HasBeen to true>>
+
+
+:: The Gate {"position":"875,375","size":"100,100"}
+!The Gate
+
+[img[https://i.postimg.cc/50NFywZv/Hell-Gate.webp]]
+
+As you enter The Lords Dungeon you feel a chill wash over you, even away from his one eyed gaze you can't forget the frosted expression upon his face after you left, now you stand locked in this maze eternal forever to roam these halls, there must be a way out.
+
+ Shall you ''[[Set out]]'' to discover the exit?
+
+<<set $coins to 0>>
+<<set $hasKey to false>>
+<<set $Drenched to false>>
+<<set $wentRight to false>>
+<<set $wentLeft to false>>
+<<set $HasBeen to false>>
+
+
+:: leave the dungeon {"position":"875,250","size":"100,100"}
+Your lord sees you walk out and walks towards you, placing his staff on your shoulder and gently sliding it as the world goes dark for you.
+
+Perhaps this test was more entertainment for the lord, regardless you made it out!
+
+
+:: left {"position":"775,625","size":"100,100"}
+<<if $Drenched>>
+Coming out of the well you feel silly for entering it without any real reason, now your sopping wet and wait a moment to dry
+<<set $Drenched to false>>
+<</if>>
+
+<<if $wentLeft>>
+Your back in this area, the well is still there and the sun continues to gleam..
+do you ''[[Enter the Well->Plunge]]''? or ''[[Head back->Set out]]'' to the main chamber
+<<else>>
+As you walk down the left path you see a small well and a glimmer of sunlight.
+although you cant reach the top you can see something deep in the well
+
+''[[Plunge]]'' into the well
+''[[Head back->Set out]]'' to the main chamber
+<</if>>
+
+<<set $wentLeft to true>>
+
+
+:: right {"position":"1000,625","size":"100,100"}
+<<if !$wentRight>>
+You head right and find a single lone coin.
+<<set $coins to 1>>
+you decide to pocket it and... well there isnt anything other than this cobbled wall so you decide to ''[[head back->Set out]]'' 
+<<else>>
+There remains a wall here, surely you didn't expect another coin to materialize out of thin air.
+you decide to ''[[head back->Set out]]'' 
+<</if>>
